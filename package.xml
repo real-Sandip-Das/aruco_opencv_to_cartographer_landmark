@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>aruco_opencv_to_cartographer_landmark</name>
+  <version>0.1.0</version>
+  <description>A node that relays messages of type aruco_opencv_msgs/ArucoDetection in order to enable usage of Aruco markers as landmarks in Google Cartographer SLAM</description>
+
+  <maintainer email="sd13535@outlook.com">Sandip Das</maintainer>
+  <license>BSD</license>
+
+
+  <url type="website">https://github.com/real-Sandip-Das/aruco_opencv_to_cartographer_landmark</url>
+  <url type="bugtracker">https://github.com/real-Sandip-Das/aruco_opencv_to_cartographer_landmark/issues</url>
+
+
+  <author email="sd13535@outlook.com">Sandip Das</author>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>aruco_opencv_msgs</depend>
+  <depend>cartographer_ros_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>tf2_ros</depend>
+
+
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
