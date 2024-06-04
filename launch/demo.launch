@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<launch>
+    <node pkg="aruco_opencv_to_cartographer_landmark" type="aruco_opencv_to_cartographer_landmark" name="aruco_to_landmark_translator">
+        <param name="subscriber_topic" value="/aruco_detections" />
+        <param name="publisher_topic" value="/landmark" />
+        <param name="subscriber_queue_size" value="10" />
+        <param name="publisher_queue_size" value="10" />
+        <param name="tracking_frame" value="base_link" />
+    </node>
+</launch>

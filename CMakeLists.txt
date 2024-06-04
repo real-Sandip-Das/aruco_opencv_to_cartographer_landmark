@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   cartographer_ros_msgs
   geometry_msgs
   roscpp
+  tf2_geometry_msgs
   tf2_ros
 )
 
@@ -28,6 +29,7 @@ catkin_package(
     cartographer_ros_msgs
     geometry_msgs
     roscpp
+    tf2_geometry_msgs
     tf2_ros
 )
 

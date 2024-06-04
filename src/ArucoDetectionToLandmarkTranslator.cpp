@@ -5,6 +5,7 @@
 
 // ROS
 #include <cartographer_ros_msgs/LandmarkList.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
 namespace aruco_opencv_to_cartographer_landmark {
 
@@ -41,6 +42,7 @@ void ArucoDetectionToLandmarkTranslator::topicCallback(const aruco_opencv_msgs::
 {
   cartographer_ros_msgs::LandmarkList reply;
   reply.header = message.header;
+  reply.header.frame_id = trackingFrame_;
   
   for (aruco_opencv_msgs::MarkerPose marker : message.markers)
   {
@@ -50,14 +52,16 @@ void ArucoDetectionToLandmarkTranslator::topicCallback(const aruco_opencv_msgs::
     geometry_msgs::PoseStamped poseIn;
     poseIn.header = message.header;
     poseIn.pose = marker.pose;
+    geometry_msgs::PoseStamped poseOut;
     try{
-      tfBuffer_.transform(poseIn, landmarkEntry.tracking_from_landmark_transform, trackingFrame_, ros::Duration(0.0));
+      tfBuffer_.transform(poseIn, poseOut, trackingFrame_, ros::Duration(0.0));
     }
     catch (tf2::TransformException &ex) {
       ROS_WARN("Failure %s\n", ex.what());
     }
     landmarkEntry.rotation_weight = 1.0;
     landmarkEntry.translation_weight = 1.0;
+    landmarkEntry.tracking_from_landmark_transform = poseOut.pose;
 
     reply.landmarks.push_back(landmarkEntry);
   }
